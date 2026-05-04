@@ -1,11 +1,14 @@
 package com.climbup.service;
 
+import com.climbup.event.CheckInCompletedEvent;
+import com.climbup.event.MembershipExpiredEvent;
 import com.climbup.model.CheckIn;
 import com.climbup.model.Membership;
 import com.climbup.model.User;
 import com.climbup.repository.CheckInRepository;
 import com.climbup.repository.MembershipRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +28,7 @@ public class CheckInService {
     private final CheckInRepository checkInRepo;
     private final MembershipRepository membershipRepo;
     private final MemberService memberService;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Transactional
     public CheckIn checkIn(Long userId) {
@@ -41,6 +45,7 @@ public class CheckInService {
             usable.setEntriesRemaining(usable.getEntriesRemaining() - 1);
             if (usable.getEntriesRemaining() <= 0) {
                 usable.setStatus(Membership.Status.EXPIRED);
+                eventPublisher.publishEvent(new MembershipExpiredEvent(usable));
             }
             membershipRepo.save(usable);
         }
@@ -48,7 +53,9 @@ public class CheckInService {
         CheckIn c = new CheckIn();
         c.setUser(user);
         c.setMembership(usable);
-        return checkInRepo.save(c);
+        CheckIn saved = checkInRepo.save(c);
+        eventPublisher.publishEvent(new CheckInCompletedEvent(saved));
+        return saved;
     }
 
     private boolean canUse(Membership m) {

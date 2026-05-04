@@ -1,11 +1,15 @@
 package com.climbup.service;
 
 import com.climbup.dto.AssignMembershipRequest;
+import com.climbup.event.MembershipActivatedEvent;
+import com.climbup.event.MembershipAssignedEvent;
+import com.climbup.event.MembershipCancelledEvent;
 import com.climbup.model.Membership;
 import com.climbup.model.MembershipType;
 import com.climbup.model.User;
 import com.climbup.repository.MembershipRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,6 +25,7 @@ public class MembershipService {
     private final MemberService memberService;
     private final MembershipTypeService typeService;
     private final DiscountService discountService;
+    private final ApplicationEventPublisher eventPublisher;
 
     public List<Membership> getByUserId(Long userId) {
         return repo.findByUserId(userId);
@@ -41,7 +46,9 @@ public class MembershipService {
         m.setPricePaid(discountService.computeEffectivePrice(type));
         m.setStatus(req.directActivate() ? Membership.Status.ACTIVE : Membership.Status.PENDING);
         applyDates(m, type, req.startDate());
-        return repo.save(m);
+        Membership saved = repo.save(m);
+        eventPublisher.publishEvent(new MembershipAssignedEvent(saved));
+        return saved;
     }
 
     public Membership activate(Long membershipId) {
@@ -50,13 +57,17 @@ public class MembershipService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Membership is not pending");
         }
         m.setStatus(Membership.Status.ACTIVE);
-        return repo.save(m);
+        Membership saved = repo.save(m);
+        eventPublisher.publishEvent(new MembershipActivatedEvent(saved));
+        return saved;
     }
 
     public Membership cancel(Long membershipId) {
         Membership m = getById(membershipId);
         m.setStatus(Membership.Status.CANCELLED);
-        return repo.save(m);
+        Membership saved = repo.save(m);
+        eventPublisher.publishEvent(new MembershipCancelledEvent(saved));
+        return saved;
     }
 
     public Membership getById(Long id) {
