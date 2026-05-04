@@ -1,9 +1,11 @@
 package com.climbup.controller.admin;
 
+import com.climbup.dto.ActivateMembershipRequest;
 import com.climbup.dto.AssignMembershipRequest;
 import com.climbup.dto.MemberRequest;
 import com.climbup.model.Membership;
 import com.climbup.model.User;
+import com.climbup.repository.MembershipRepository;
 import com.climbup.service.MemberService;
 import com.climbup.service.MembershipService;
 import jakarta.validation.Valid;
@@ -23,6 +25,7 @@ public class AdminMemberController {
 
     private final MemberService memberService;
     private final MembershipService membershipService;
+    private final MembershipRepository membershipRepo;
 
     @GetMapping("/members")
     public Page<User> list(
@@ -65,12 +68,30 @@ public class AdminMemberController {
     }
 
     @PutMapping("/memberships/{id}/activate")
-    public Membership activate(@PathVariable Long id) {
-        return membershipService.activate(id);
+    public Membership activate(@PathVariable Long id,
+                               @Valid @RequestBody ActivateMembershipRequest req) {
+        return membershipService.activate(id, req.startDate());
     }
 
     @PutMapping("/memberships/{id}/cancel")
     public Membership cancel(@PathVariable Long id) {
         return membershipService.cancel(id);
+    }
+
+    @GetMapping("/memberships/pending")
+    public List<Map<String, Object>> pendingMemberships(
+        @RequestParam(required = false) Long memberId
+    ) {
+        List<Membership> memberships = memberId != null
+            ? membershipRepo.findByStatusAndUserId(Membership.Status.PENDING, memberId)
+            : membershipRepo.findByStatus(Membership.Status.PENDING);
+
+        return memberships.stream().map(m -> Map.<String, Object>of(
+            "membershipId", m.getId(),
+            "userId", m.getUser().getId(),
+            "memberName", m.getUser().getName(),
+            "membershipTypeName", m.getMembershipType().getName(),
+            "createdAt", m.getCreatedAt()
+        )).toList();
     }
 }

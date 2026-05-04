@@ -73,6 +73,11 @@ async function enterAsMember() {
           </div>
         </div>
       </div>
+
+      <p class="text-center text-sm text-gray-500 mt-4">
+        New member?
+        <RouterLink to="/register" class="text-blue-600 hover:underline font-medium">Register here</RouterLink>
+      </p>
     </div>
   </div>
 </template>

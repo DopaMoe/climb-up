@@ -68,7 +68,7 @@ function statusColor(s: string) {
           </div>
 
           <div class="grid grid-cols-2 gap-3 text-sm">
-            <div><span class="text-gray-500">Start:</span> <span class="ml-2">{{ m.startDate }}</span></div>
+            <div><span class="text-gray-500">Start:</span> <span class="ml-2">{{ m.startDate ?? 'To be confirmed' }}</span></div>
             <div v-if="m.endDate"><span class="text-gray-500">Expires:</span> <span class="ml-2">{{ m.endDate }}</span></div>
             <div v-if="m.entriesRemaining != null">
               <span class="text-gray-500">Entries left:</span>

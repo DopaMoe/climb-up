@@ -11,6 +11,7 @@ const router = createRouter({
       return '/login'
     }},
     { path: '/login', component: () => import('../views/LoginView.vue') },
+    { path: '/register', component: () => import('../views/RegisterView.vue') },
     {
       path: '/admin',
       component: () => import('../components/layout/AdminLayout.vue'),
@@ -25,6 +26,7 @@ const router = createRouter({
         { path: 'membership-types/:id', component: () => import('../views/admin/MembershipTypeEditView.vue') },
         { path: 'check-in', component: () => import('../views/admin/CheckInView.vue') },
         { path: 'discounts', component: () => import('../views/admin/DiscountsView.vue') },
+        { path: 'pending-activations', component: () => import('../views/admin/PendingActivationsView.vue') },
       ],
     },
     {

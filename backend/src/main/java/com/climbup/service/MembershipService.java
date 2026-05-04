@@ -51,11 +51,13 @@ public class MembershipService {
         return saved;
     }
 
-    public Membership activate(Long membershipId) {
+    public Membership activate(Long membershipId, LocalDate startDate) {
         Membership m = getById(membershipId);
         if (m.getStatus() != Membership.Status.PENDING) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Membership is not pending");
         }
+        m.setStartDate(startDate);
+        applyDates(m, m.getMembershipType(), startDate);
         m.setStatus(Membership.Status.ACTIVE);
         Membership saved = repo.save(m);
         eventPublisher.publishEvent(new MembershipActivatedEvent(saved));

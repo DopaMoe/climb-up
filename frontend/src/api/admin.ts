@@ -26,8 +26,11 @@ export const assignMembership = (userId: number, data: {
   directActivate: boolean
 }) => api.post(`/api/admin/members/${userId}/memberships`, data).then(r => r.data)
 
-export const activateMembership = (id: number) =>
-  api.put(`/api/admin/memberships/${id}/activate`).then(r => r.data)
+export const activateMembership = (id: number, startDate: string) =>
+  api.put(`/api/admin/memberships/${id}/activate`, { startDate }).then(r => r.data)
+
+export const getPendingMemberships = (memberId?: number) =>
+  api.get('/api/admin/memberships/pending', { params: memberId ? { memberId } : {} }).then(r => r.data)
 
 export const cancelMembership = (id: number) =>
   api.put(`/api/admin/memberships/${id}/cancel`).then(r => r.data)

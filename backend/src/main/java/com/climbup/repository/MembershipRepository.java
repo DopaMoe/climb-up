@@ -19,4 +19,8 @@ public interface MembershipRepository extends JpaRepository<Membership, Long> {
 
     @Query("SELECT COUNT(m) FROM Membership m WHERE m.status = 'PENDING'")
     long countPending();
+
+    List<Membership> findByStatus(Membership.Status status);
+
+    List<Membership> findByStatusAndUserId(Membership.Status status, Long userId);
 }

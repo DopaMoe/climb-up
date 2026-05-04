@@ -45,6 +45,11 @@ function logout() {
           active-class="bg-blue-600 text-white">
           <span>🏷️</span> Discounts
         </RouterLink>
+        <RouterLink to="/admin/pending-activations"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
+          active-class="bg-blue-600 text-white">
+          <span>⏳</span> Pending Activations
+        </RouterLink>
       </nav>
       <div class="p-4 border-t border-gray-700">
         <button @click="logout"

@@ -17,6 +17,8 @@ const showAssign = ref(false)
 const assignForm = ref({ membershipTypeId: '', startDate: today(), directActivate: true })
 const assignError = ref('')
 const successMsg = ref('')
+const activateModal = ref<{ membershipId: number } | null>(null)
+const activateStartDate = ref('')
 
 function today() { return new Date().toISOString().split('T')[0] }
 
@@ -61,8 +63,15 @@ async function handleAssign() {
   }
 }
 
-async function handleActivate(mId: number) {
-  await activateMembership(mId)
+function openActivateModal(mId: number) {
+  activateModal.value = { membershipId: mId }
+  activateStartDate.value = today()
+}
+
+async function confirmActivate() {
+  if (!activateModal.value || !activateStartDate.value) return
+  await activateMembership(activateModal.value.membershipId, activateStartDate.value)
+  activateModal.value = null
   successMsg.value = 'Membership activated.'
   load()
 }
@@ -184,7 +193,7 @@ function statusColor(s: string) {
                   <span :class="['text-xs px-2 py-0.5 rounded-full font-medium', statusColor(m.status)]">{{ m.status }}</span>
                 </div>
                 <p class="text-sm text-gray-500">
-                  Start: {{ m.startDate }}
+                  Start: {{ m.startDate ?? 'To be confirmed' }}
                   <template v-if="m.endDate"> · End: {{ m.endDate }}</template>
                   <template v-if="m.entriesRemaining != null"> · Entries left: {{ m.entriesRemaining }}</template>
                   <template v-if="m.entriesExpiryDate"> · Expires: {{ m.entriesExpiryDate }}</template>
@@ -192,7 +201,7 @@ function statusColor(s: string) {
                 <p class="text-sm text-gray-400 mt-0.5">Paid: {{ m.pricePaid }} SAR</p>
               </div>
               <div class="flex gap-2">
-                <button v-if="m.status === 'PENDING'" @click="handleActivate(m.id)"
+                <button v-if="m.status === 'PENDING'" @click="openActivateModal(m.id)"
                   class="text-xs bg-green-500 text-white px-3 py-1.5 rounded-lg hover:bg-green-600 font-medium">
                   Activate
                 </button>
@@ -205,6 +214,28 @@ function statusColor(s: string) {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activate membership modal -->
+  <div v-if="activateModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm">
+      <h2 class="text-lg font-bold text-gray-900 mb-4">Activate Membership</h2>
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+        <input v-model="activateStartDate" type="date" required
+          class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
+      </div>
+      <div class="flex gap-3">
+        <button @click="activateModal = null"
+          class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg text-sm hover:bg-gray-50 transition-colors">
+          Cancel
+        </button>
+        <button @click="confirmActivate" :disabled="!activateStartDate"
+          class="flex-1 bg-green-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 disabled:opacity-50 transition-colors">
+          Confirm
+        </button>
       </div>
     </div>
   </div>
