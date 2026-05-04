@@ -26,7 +26,7 @@ public class Membership {
     @JoinColumn(name = "membership_type_id", nullable = false)
     private MembershipType membershipType;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDate startDate;
 
     /** null for entry-based memberships */
