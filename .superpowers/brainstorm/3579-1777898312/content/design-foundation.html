@@ -1,0 +1,129 @@
+<h2>Section 1 — Design Foundation</h2>
+<p class="subtitle">Colors, typography, and icons. Everything else inherits from this.</p>
+
+<div class="section">
+  <h3>Color Palette</h3>
+  <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap:12px; margin-top:12px;">
+
+    <div style="border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.12);">
+      <div style="background:#0f172a; height:56px;"></div>
+      <div style="background:#fff; padding:8px;">
+        <div style="font-size:11px; font-weight:700; color:#1e293b;">Sidebar / Nav</div>
+        <div style="font-size:10px; color:#64748b; font-family:monospace;">slate-900 #0f172a</div>
+      </div>
+    </div>
+
+    <div style="border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.12);">
+      <div style="background:#1e293b; height:56px;"></div>
+      <div style="background:#fff; padding:8px;">
+        <div style="font-size:11px; font-weight:700; color:#1e293b;">Active Nav Item</div>
+        <div style="font-size:10px; color:#64748b; font-family:monospace;">slate-800 #1e293b</div>
+      </div>
+    </div>
+
+    <div style="border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.12);">
+      <div style="background:#f8fafc; height:56px; border-bottom:1px solid #e2e8f0;"></div>
+      <div style="background:#fff; padding:8px;">
+        <div style="font-size:11px; font-weight:700; color:#1e293b;">Page Background</div>
+        <div style="font-size:10px; color:#64748b; font-family:monospace;">slate-50 #f8fafc</div>
+      </div>
+    </div>
+
+    <div style="border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.12);">
+      <div style="background:#ffffff; height:56px; border-bottom:1px solid #e2e8f0;"></div>
+      <div style="background:#fff; padding:8px;">
+        <div style="font-size:11px; font-weight:700; color:#1e293b;">Cards / Surfaces</div>
+        <div style="font-size:10px; color:#64748b; font-family:monospace;">white #ffffff</div>
+      </div>
+    </div>
+
+    <div style="border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.12);">
+      <div style="background:linear-gradient(135deg,#0ea5e9,#38bdf8); height:56px;"></div>
+      <div style="background:#fff; padding:8px;">
+        <div style="font-size:11px; font-weight:700; color:#1e293b;">Primary Accent</div>
+        <div style="font-size:10px; color:#64748b; font-family:monospace;">sky-500 #0ea5e9</div>
+      </div>
+    </div>
+
+    <div style="border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.12);">
+      <div style="background:#10b981; height:56px;"></div>
+      <div style="background:#fff; padding:8px;">
+        <div style="font-size:11px; font-weight:700; color:#1e293b;">Success / Active</div>
+        <div style="font-size:10px; color:#64748b; font-family:monospace;">emerald-500</div>
+      </div>
+    </div>
+
+    <div style="border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.12);">
+      <div style="background:#f59e0b; height:56px;"></div>
+      <div style="background:#fff; padding:8px;">
+        <div style="font-size:11px; font-weight:700; color:#1e293b;">Warning / Pending</div>
+        <div style="font-size:10px; color:#64748b; font-family:monospace;">amber-500</div>
+      </div>
+    </div>
+
+    <div style="border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.12);">
+      <div style="background:#f43f5e; height:56px;"></div>
+      <div style="background:#fff; padding:8px;">
+        <div style="font-size:11px; font-weight:700; color:#1e293b;">Danger / Expired</div>
+        <div style="font-size:10px; color:#64748b; font-family:monospace;">rose-500</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h3>Typography — Inter (Google Fonts)</h3>
+  <div style="background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:20px; margin-top:12px; font-family:'Inter', 'Segoe UI', system-ui, sans-serif;">
+    <div style="font-size:28px; font-weight:800; color:#0f172a; letter-spacing:-0.5px; margin-bottom:8px;">Dashboard</div>
+    <div style="font-size:16px; font-weight:600; color:#1e293b; margin-bottom:6px;">Total Members — 248</div>
+    <div style="font-size:14px; color:#64748b; margin-bottom:6px;">Active memberships this month have increased by 12%</div>
+    <div style="font-size:12px; color:#94a3b8; font-weight:500; text-transform:uppercase; letter-spacing:0.8px;">MEMBER SINCE JAN 2025</div>
+  </div>
+  <p style="font-size:12px; color:#64748b; margin-top:8px;">Loaded via a single &lt;link&gt; in index.html — no npm package needed. Weights 400/500/600/700/800.</p>
+</div>
+
+<div class="section">
+  <h3>Icons — Lucide Vue Next</h3>
+  <div style="background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; margin-top:12px; display:flex; gap:24px; flex-wrap:wrap; align-items:center;">
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span style="font-size:10px; color:#94a3b8;">Dashboard</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span style="font-size:10px; color:#94a3b8;">Members</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 15h0M2 9h20"/></svg>
+      <span style="font-size:10px; color:#94a3b8;">Memberships</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span style="font-size:10px; color:#94a3b8;">Check-in</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+      <span style="font-size:10px; color:#94a3b8;">Discounts</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span style="font-size:10px; color:#94a3b8;">Pending</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      <span style="font-size:10px; color:#94a3b8;">Logout</span>
+    </div>
+
+  </div>
+  <p style="font-size:12px; color:#64748b; margin-top:8px;">Installed as <code style="background:#f1f5f9;padding:1px 4px;border-radius:3px;">lucide-vue-next</code> — replaces all emoji icons with crisp SVG. Tree-shaken, no bundle bloat.</p>
+</div>
+
+<p style="font-size:13px; color:#475569; margin-top:8px; background:#f0f9ff; border:1px solid #bae6fd; border-radius:6px; padding:10px;">Does this foundation look right? Approve to move to layouts.</p>

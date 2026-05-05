@@ -1,0 +1,150 @@
+<h2>How dark should the admin content area be?</h2>
+<p class="subtitle">The sidebar will be deep navy. The question is what the main content area feels like.</p>
+
+<div class="cards">
+
+  <!-- Option A: All Dark -->
+  <div class="card" data-choice="all-dark" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f172a; padding:16px; min-height:220px;">
+      <div style="display:flex; gap:8px; height:200px;">
+        <!-- Sidebar -->
+        <div style="width:80px; background:#0f172a; border-right:1px solid #1e293b; padding:10px; display:flex; flex-direction:column; gap:6px; flex-shrink:0;">
+          <div style="font-size:9px; font-weight:800; color:#38bdf8; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">CU</div>
+          <div style="display:flex; align-items:center; gap:5px; background:#1e293b; border-radius:4px; padding:5px 6px;">
+            <div style="width:8px; height:8px; background:#38bdf8; border-radius:2px; flex-shrink:0;"></div>
+            <div style="height:4px; background:#38bdf8; border-radius:2px; flex:1;"></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:5px; padding:5px 6px;">
+            <div style="width:8px; height:8px; background:#334155; border-radius:2px; flex-shrink:0;"></div>
+            <div style="height:4px; background:#334155; border-radius:2px; flex:1;"></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:5px; padding:5px 6px;">
+            <div style="width:8px; height:8px; background:#334155; border-radius:2px; flex-shrink:0;"></div>
+            <div style="height:4px; background:#334155; border-radius:2px; flex:1;"></div>
+          </div>
+        </div>
+        <!-- Content area — also very dark -->
+        <div style="flex:1; background:#0f172a; padding:8px; display:flex; flex-direction:column; gap:6px;">
+          <div style="height:10px; background:#1e293b; border-radius:3px; width:40%;"></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:4px;">
+            <div style="background:#1e293b; border:1px solid #334155; border-radius:5px; padding:8px;">
+              <div style="height:4px; background:#334155; border-radius:2px; width:60%; margin-bottom:5px;"></div>
+              <div style="height:12px; background:#38bdf8; border-radius:2px; width:50%;"></div>
+            </div>
+            <div style="background:#1e293b; border:1px solid #334155; border-radius:5px; padding:8px;">
+              <div style="height:4px; background:#334155; border-radius:2px; width:60%; margin-bottom:5px;"></div>
+              <div style="height:12px; background:#334155; border-radius:2px; width:50%;"></div>
+            </div>
+          </div>
+          <div style="background:#1e293b; border:1px solid #334155; border-radius:5px; flex:1; padding:8px;">
+            <div style="height:4px; background:#334155; border-radius:2px; width:30%; margin-bottom:8px;"></div>
+            <div style="height:3px; background:#334155; border-radius:2px; margin-bottom:4px;"></div>
+            <div style="height:3px; background:#334155; border-radius:2px; width:80%; margin-bottom:4px;"></div>
+            <div style="height:3px; background:#334155; border-radius:2px; width:90%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Full Dark</h3>
+      <p>Everything stays deep navy/dark — sidebar and content area are the same darkness. Like VS Code, Linear at night. Very immersive and dramatic.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Dark Sidebar + Slightly Lighter Content -->
+  <div class="card" data-choice="layered-dark" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f172a; padding:16px; min-height:220px;">
+      <div style="display:flex; gap:0; height:200px; border-radius:6px; overflow:hidden;">
+        <!-- Sidebar -->
+        <div style="width:80px; background:#020617; padding:10px; display:flex; flex-direction:column; gap:6px; flex-shrink:0;">
+          <div style="font-size:9px; font-weight:800; color:#38bdf8; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">CU</div>
+          <div style="display:flex; align-items:center; gap:5px; background:#1e293b; border-radius:4px; padding:5px 6px;">
+            <div style="width:8px; height:8px; background:#38bdf8; border-radius:2px; flex-shrink:0;"></div>
+            <div style="height:4px; background:#38bdf8; border-radius:2px; flex:1;"></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:5px; padding:5px 6px;">
+            <div style="width:8px; height:8px; background:#1e293b; border-radius:2px; flex-shrink:0;"></div>
+            <div style="height:4px; background:#1e293b; border-radius:2px; flex:1;"></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:5px; padding:5px 6px;">
+            <div style="width:8px; height:8px; background:#1e293b; border-radius:2px; flex-shrink:0;"></div>
+            <div style="height:4px; background:#1e293b; border-radius:2px; flex:1;"></div>
+          </div>
+        </div>
+        <!-- Content area — slightly lighter navy -->
+        <div style="flex:1; background:#0f172a; padding:8px; display:flex; flex-direction:column; gap:6px;">
+          <div style="height:10px; background:#1e293b; border-radius:3px; width:40%;"></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:4px;">
+            <div style="background:#1e293b; border:1px solid #334155; border-radius:5px; padding:8px; box-shadow:0 0 0 1px rgba(56,189,248,0.05);">
+              <div style="height:4px; background:#334155; border-radius:2px; width:60%; margin-bottom:5px;"></div>
+              <div style="height:12px; background:#0ea5e9; border-radius:2px; width:50%;"></div>
+            </div>
+            <div style="background:#1e293b; border:1px solid #334155; border-radius:5px; padding:8px;">
+              <div style="height:4px; background:#334155; border-radius:2px; width:60%; margin-bottom:5px;"></div>
+              <div style="height:12px; background:#22c55e; border-radius:2px; width:50%; opacity:0.8;"></div>
+            </div>
+          </div>
+          <div style="background:#1e293b; border:1px solid #334155; border-radius:5px; flex:1; padding:8px;">
+            <div style="height:4px; background:#334155; border-radius:2px; width:30%; margin-bottom:8px;"></div>
+            <div style="height:3px; background:#334155; border-radius:2px; margin-bottom:4px;"></div>
+            <div style="height:3px; background:#1e3a5f; border-radius:2px; width:80%; margin-bottom:4px;"></div>
+            <div style="height:3px; background:#334155; border-radius:2px; width:90%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Layered Dark</h3>
+      <p>Near-black sidebar (darkest), slate content area (medium dark), navy cards (lighter dark). Depth through subtle layering — professional and premium.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Dark Sidebar + Near-White Content -->
+  <div class="card" data-choice="split-light" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f8fafc; padding:16px; min-height:220px;">
+      <div style="display:flex; gap:0; height:200px; border-radius:6px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.12);">
+        <!-- Sidebar — dark -->
+        <div style="width:80px; background:#0f172a; padding:10px; display:flex; flex-direction:column; gap:6px; flex-shrink:0;">
+          <div style="font-size:9px; font-weight:800; color:#38bdf8; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">CU</div>
+          <div style="display:flex; align-items:center; gap:5px; background:#1e3a5f; border-radius:4px; padding:5px 6px;">
+            <div style="width:8px; height:8px; background:#38bdf8; border-radius:2px; flex-shrink:0;"></div>
+            <div style="height:4px; background:#38bdf8; border-radius:2px; flex:1;"></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:5px; padding:5px 6px;">
+            <div style="width:8px; height:8px; background:#334155; border-radius:2px; flex-shrink:0;"></div>
+            <div style="height:4px; background:#334155; border-radius:2px; flex:1;"></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:5px; padding:5px 6px;">
+            <div style="width:8px; height:8px; background:#334155; border-radius:2px; flex-shrink:0;"></div>
+            <div style="height:4px; background:#334155; border-radius:2px; flex:1;"></div>
+          </div>
+        </div>
+        <!-- Content area — light/white -->
+        <div style="flex:1; background:#f8fafc; padding:8px; display:flex; flex-direction:column; gap:6px;">
+          <div style="height:10px; background:#1e293b; border-radius:3px; width:40%;"></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:4px;">
+            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:5px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+              <div style="height:4px; background:#e2e8f0; border-radius:2px; width:60%; margin-bottom:5px;"></div>
+              <div style="height:12px; background:#0ea5e9; border-radius:2px; width:50%;"></div>
+            </div>
+            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:5px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+              <div style="height:4px; background:#e2e8f0; border-radius:2px; width:60%; margin-bottom:5px;"></div>
+              <div style="height:12px; background:#22c55e; border-radius:2px; width:50%; opacity:0.8;"></div>
+            </div>
+          </div>
+          <div style="background:#fff; border:1px solid #e2e8f0; border-radius:5px; flex:1; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+            <div style="height:4px; background:#e2e8f0; border-radius:2px; width:30%; margin-bottom:8px;"></div>
+            <div style="height:3px; background:#e2e8f0; border-radius:2px; margin-bottom:4px;"></div>
+            <div style="height:3px; background:#e2e8f0; border-radius:2px; width:80%; margin-bottom:4px;"></div>
+            <div style="height:3px; background:#e2e8f0; border-radius:2px; width:90%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Dark Sidebar + Light Content</h3>
+      <p>Classic split: deep navy sidebar, clean white/slate-50 content. Maximum contrast and readability. Familiar SaaS pattern — like Stripe Dashboard.</p>
+    </div>
+  </div>
+
+</div>
