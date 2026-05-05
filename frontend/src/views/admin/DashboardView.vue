@@ -1,63 +1,77 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { getDashboard } from '../../api/admin'
+import { Users, TrendingUp, Clock, CheckSquare } from 'lucide-vue-next'
 import dayjs from 'dayjs'
 
 const stats = ref<any>(null)
 const loading = ref(true)
 
 onMounted(async () => {
-  try {
-    stats.value = await getDashboard()
-  } finally {
-    loading.value = false
-  }
+  try { stats.value = await getDashboard() }
+  finally { loading.value = false }
 })
 </script>
 
 <template>
-  <div class="p-8">
-    <h2 class="text-2xl font-bold text-gray-900 mb-6">Dashboard</h2>
+  <div class="p-6 lg:p-8">
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Dashboard</h1>
+      <p class="text-sm text-slate-500 mt-1">{{ dayjs().format('dddd, D MMMM YYYY') }}</p>
+    </div>
 
-    <div v-if="loading" class="text-gray-500">Loading...</div>
+    <div v-if="loading" class="flex items-center justify-center py-20">
+      <div class="w-6 h-6 border-2 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
+    </div>
 
     <div v-else-if="stats">
-      <!-- Stat cards -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
-          <p class="text-gray-500 text-sm">Total Members</p>
-          <p class="text-3xl font-bold text-gray-900 mt-1">{{ stats.totalMembers }}</p>
+        <div class="bg-white rounded-xl border border-slate-200 border-t-2 border-t-sky-500 p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Total Members</p>
+            <Users :size="15" class="text-slate-400" />
+          </div>
+          <p class="text-3xl font-black text-slate-900">{{ stats.totalMembers }}</p>
         </div>
-        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
-          <p class="text-gray-500 text-sm">Active Memberships</p>
-          <p class="text-3xl font-bold text-green-600 mt-1">{{ stats.activeMemberships }}</p>
+        <div class="bg-white rounded-xl border border-slate-200 border-t-2 border-t-emerald-500 p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Active</p>
+            <TrendingUp :size="15" class="text-emerald-400" />
+          </div>
+          <p class="text-3xl font-black text-emerald-600">{{ stats.activeMemberships }}</p>
         </div>
-        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
-          <p class="text-gray-500 text-sm">Pending Activation</p>
-          <p class="text-3xl font-bold text-yellow-600 mt-1">{{ stats.pendingMemberships }}</p>
+        <div class="bg-white rounded-xl border border-slate-200 border-t-2 border-t-amber-500 p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Pending</p>
+            <Clock :size="15" class="text-amber-400" />
+          </div>
+          <p class="text-3xl font-black text-amber-600">{{ stats.pendingMemberships }}</p>
         </div>
-        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
-          <p class="text-gray-500 text-sm">Check-ins Today</p>
-          <p class="text-3xl font-bold text-blue-600 mt-1">{{ stats.checkInsToday }}</p>
+        <div class="bg-white rounded-xl border border-slate-200 border-t-2 border-t-violet-500 p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Check-ins Today</p>
+            <CheckSquare :size="15" class="text-violet-400" />
+          </div>
+          <p class="text-3xl font-black text-violet-600">{{ stats.checkInsToday }}</p>
         </div>
       </div>
 
-      <!-- Recent check-ins -->
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100">
-        <div class="p-5 border-b border-gray-100">
-          <h3 class="font-semibold text-gray-900">Recent Check-ins</h3>
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="px-6 py-4 border-b border-slate-100">
+          <h3 class="text-sm font-semibold text-slate-900">Recent Check-ins</h3>
         </div>
-        <div v-if="stats.recentCheckIns.length === 0" class="p-5 text-gray-500 text-sm">
-          No check-ins yet today.
+        <div v-if="stats.recentCheckIns.length === 0" class="flex flex-col items-center justify-center py-12 text-slate-400">
+          <CheckSquare :size="28" class="mb-2 opacity-40" />
+          <p class="text-sm">No check-ins yet today.</p>
         </div>
-        <div v-else class="divide-y divide-gray-50">
+        <div v-else class="divide-y divide-slate-50">
           <div v-for="c in stats.recentCheckIns" :key="c.id"
-            class="flex items-center justify-between px-5 py-3">
+            class="flex items-center justify-between px-6 py-3.5">
             <div>
-              <p class="font-medium text-gray-900">{{ c.userName }}</p>
-              <p class="text-sm text-gray-500">{{ c.membershipType }}</p>
+              <p class="text-sm font-semibold text-slate-900">{{ c.userName }}</p>
+              <p class="text-xs text-slate-500 mt-0.5">{{ c.membershipType }}</p>
             </div>
-            <p class="text-sm text-gray-400">{{ dayjs(c.checkedInAt).format('HH:mm') }}</p>
+            <p class="text-xs font-medium text-slate-400 tabular-nums">{{ dayjs(c.checkedInAt).format('HH:mm') }}</p>
           </div>
         </div>
       </div>
